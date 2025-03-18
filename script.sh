@@ -4,6 +4,8 @@ terraform init
 terraform plan
 terraform apply -refresh=false -auto-approve
 
+sleep 300
+
 if [ $? -eq 0 ]; then
   echo "Terraform Applied Successful"
 else
