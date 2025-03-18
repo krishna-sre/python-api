@@ -1,49 +1,13 @@
-## Overview
-
-A super simple RESTful api created using Flask. The idea is to have a simple api that can be used with pipeline demos and proof of concepts.
-
-## Installation
-
-Requirements:
-
-```sh
-python -m venv ./venv
-source .venv/bin/activate
-```
-
-Next, run
-
-```sh
-pip install -r requirements.txt
-```
-
-to get the dependencies.
-
-Finally run the api with
-
-```sh
-python api.py
-```
-
-## Example
-
-Flask will run on http://127.0.0.1:5000/.
-
-```sh
-$ curl 127.0.0.1:5000/
-[{"id":1,"name":"Monday"},{"id":2,"name":"Tuesday"},{"id":3,"name":"Wednesday"},{"id":4,"name":"Thursday"},{"id":5,"name":"Friday"},{"id":6,"name":"Saturday"},{"id":7,"name":"Sunday"}]
-```
-
-To return a single day pass in a number with Monday starting at 1.
-
-```sh
-$ curl 127.0.0.1:5000/2
-{"day":{"id":2,"name":"Tuesday"}}
-```
-
-Days will also accept a post message.
-
-```sh
-$ curl -X POST 127.0.0.1:5000/
-{"success":true}
-```
+Stages:         
+Stage 1> Github Repo for Source code
+Stage 2 > Flask API Dockerfile for Containerize Flask App
+Stage 3 >   Bash Script:   
+       -  Terraform provisioning
+          - Build Docker Image       
+          - Push to AWS ECR         
+         - Trigger ECS Deployment   
+         - Health Check            
+Stage 4 >  AWS Elastic Container Registry to store docker images     
+Stage 5 >  AWS ECS Cluster (Fargate)   for  Runs Flask containers
+Stage 6 > Application Load Balancer  for Routes traffic, performs health checks
+Stage 7 >  End Users / Clients   for Access Flask API via ALB DNS
